@@ -1,0 +1,62 @@
+cmake_minimum_required(VERSION 3.10)
+
+# Project information
+project(FPGA_TEMPLATE_PROJECT
+    VERSION 1.0.0
+    DESCRIPTION "FPGA_TEMPLATE_PROJECT"
+    LANGUAGES C
+)
+
+# Set C standard
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS OFF)
+
+# Build type
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release)
+endif()
+
+# Set output directories
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+
+# Compiler flags
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wextra -Wpedantic")
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -g -DDEBUG")
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -O3 -DNDEBUG")
+
+
+# Add subdirectories
+add_subdirectory(sc_libs)
+add_subdirectory(xlnx_libs)
+
+# Add main executable
+add_executable(FPGA_TEMPLATE_PROJECT
+    main.c
+)
+
+# Link libraries
+target_link_libraries(FPGA_TEMPLATE_PROJECT
+    PRIVATE
+    xlnx_libs
+    sc_libs
+    m
+)
+
+# Include directories
+target_include_directories(FPGA_TEMPLATE_PROJECT
+    PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/xlnx_libs
+    ${CMAKE_CURRENT_SOURCE_DIR}/sc_libs
+)
+
+# Install rules
+install(TARGETS FPGA_TEMPLATE_PROJECT
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
+
+# Enable testing
+enable_testing() 
