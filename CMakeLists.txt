@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
 
 # Project information
-project(FPGA_TEMPLATE_PROJECT
+project(${PROJECT_NAME}
     VERSION 1.0.0
-    DESCRIPTION "FPGA_TEMPLATE_PROJECT"
+    DESCRIPTION "${PROJECT_NAME}"
     LANGUAGES C
 )
 
@@ -33,12 +33,12 @@ add_subdirectory(sc_libs)
 add_subdirectory(xlnx_libs)
 
 # Add main executable
-add_executable(FPGA_TEMPLATE_PROJECT
+add_executable(${PROJECT_NAME}
     main.c
 )
 
 # Link libraries
-target_link_libraries(FPGA_TEMPLATE_PROJECT
+target_link_libraries(${PROJECT_NAME}
     PRIVATE
     xlnx_libs
     sc_libs
@@ -46,7 +46,7 @@ target_link_libraries(FPGA_TEMPLATE_PROJECT
 )
 
 # Include directories
-target_include_directories(FPGA_TEMPLATE_PROJECT
+target_include_directories(${PROJECT_NAME}
     PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/xlnx_libs
@@ -54,7 +54,7 @@ target_include_directories(FPGA_TEMPLATE_PROJECT
 )
 
 # Install rules
-install(TARGETS FPGA_TEMPLATE_PROJECT
+install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
