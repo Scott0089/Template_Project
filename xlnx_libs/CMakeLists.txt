@@ -8,6 +8,9 @@ set(PROJECT_ROOT ${SRC_DIR}/..)
 # Gather source files recursively
 file(GLOB_RECURSE XLNX_LIB_SRC
     ${SRC_DIR}/standalone/*.c
+    ${SRC_DIR}/gpio/*.c
+    ${SRC_DIR}/sysmon/*.c
+    ${SRC_DIR}/tmrctr/*.c
 )
 
 # Create the static library
@@ -20,6 +23,9 @@ target_link_libraries(xlnx_libs PUBLIC m sc_libs)
 target_include_directories(xlnx_libs PUBLIC
     ${SRC_DIR}/standalone
     ${SRC_DIR}/hw_config
+    ${SRC_DIR}/gpio
+    ${SRC_DIR}/sysmon
+    ${SRC_DIR}/tmrctr
     ${SC_LIBS_DIR}
     ${PROJECT_ROOT}
 )

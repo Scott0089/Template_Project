@@ -23,6 +23,9 @@ target_include_directories(sc_libs
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/../xlnx_libs/standalone
         ${CMAKE_CURRENT_SOURCE_DIR}/../xlnx_libs/hw_config
+        ${CMAKE_CURRENT_SOURCE_DIR}/../xlnx_libs/gpio
+        ${CMAKE_CURRENT_SOURCE_DIR}/../xlnx_libs/sysmon
+        ${CMAKE_CURRENT_SOURCE_DIR}/../xlnx_libs/tmrctr
         ${CMAKE_CURRENT_SOURCE_DIR}/..
 )
 

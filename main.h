@@ -15,6 +15,10 @@
 #include "xstatus.h"
 #include "sc_io.h"
 
+#include "xgpio.h"
+#include "xsysmon.h"
+#include "xtmrctr.h"
+
 /* Device configuration */
 #define TARGET_PHYS_ADDR 0x40000000
 
